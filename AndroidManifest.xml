@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.metasploit.msf"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="18" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+    <permission
+        android:name="com.metasploit.msf.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.metasploit.msf.permission.C2D_MESSAGE" />
+
+    <application
+        android:name="com.metasploit.msf.MsfApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.metasploit.msf.activities.RpcActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTop" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="*"
+                    android:pathPattern=".*"
+                    android:scheme="msf" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.metasploit.msf.activities.TabActivity"
+            android:label="@string/title_activity_tab" >
+        </activity>
+        <activity android:name="com.metasploit.msf.activities.ConsoleActivity" >
+        </activity>
+        <activity android:name="com.metasploit.msf.activities.SessionActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="session"
+                    android:pathPattern=".*"
+                    android:scheme="session" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.metasploit.msf.activities.ModuleActivity"
+            android:label="@string/title_activity_tab" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="*"
+                    android:pathPattern=".*"
+                    android:scheme="msf" />
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name="com.metasploit.msf.GcmBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+
+                <category android:name="com.metasploit.msf" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="com.metasploit.msf.activities.ScanActivity"
+            android:label="@string/title_activity_tab" >
+        </activity>
+
+        <service android:name="com.metasploit.msf.GcmIntentService" />
+        <service android:name="com.metasploit.msf.rpc.RpcService" />
+    </application>
+
+</manifest>

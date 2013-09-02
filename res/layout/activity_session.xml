@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <fragment
+        android:id="@+id/fragment_plugin"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        class="com.metasploit.msf.fragments.PluginFragment" />
+
+    <fragment
+        android:id="@+id/fragment_session"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        class="com.metasploit.msf.fragments.SessionFragment" />
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>
